@@ -53,7 +53,7 @@ const Card = ({ id, cardNumber, totalNumberOfCards }) => {
                 <p>A</p>
               </div>
               <div className="card_text">
-                <div>{cardInfo.answer}</div>
+                <div className="card_text_content">{cardInfo.answer}</div>
               </div>
             </div>
           </div>

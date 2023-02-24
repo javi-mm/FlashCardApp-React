@@ -1,0 +1,22 @@
+.deck_nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.deck_nav_ul {
+  display: flex;
+  flex-direction: row;
+  column-gap: 40px;
+
+  li {
+    list-style: none;
+  }
+}
+
+.deck_navlink {
+  text-decoration: none;
+  color: white;
+}

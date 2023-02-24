@@ -6,14 +6,27 @@ import { auth } from "../../firebase";
 import { useContext } from "react";
 import { UserContext } from "../context/usercontext";
 import { useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Nav = () => {
   const navigate = useNavigate();
+  const [user, loading] = useAuthState(auth);
   const currentUser = useContext(UserContext);
+  if (loading)
+    return (
+      <nav className="nav">
+        <p>...</p>
+      </nav>
+    );
   return (
     <header>
       <nav className="nav">
         <ul>
+          <li>
+            <NavLink className="navlink" to="/">
+              Home
+            </NavLink>
+          </li>
           {currentUser && (
             <>
               <li>
