@@ -1,0 +1,45 @@
+.slider_wrapper {
+  width: 800px;
+}
+
+.customClass::before {
+  font-size: 40px;
+}
+
+.left_arrow {
+  left: -40px;
+}
+
+@media (max-width: 915px) {
+  .slider_wrapper {
+    width: 500px;
+  }
+}
+
+@media (max-width: 915px) {
+  .left_arrow {
+    top: 420px;
+    left: 180px;
+  }
+
+  .right_arrow {
+    right: 200px;
+
+    top: 420px;
+  }
+}
+@media (max-width: 520px) {
+  .slider_wrapper {
+    width: 380px;
+  }
+  .left_arrow {
+    top: 420px;
+    left: 120px;
+  }
+
+  .right_arrow {
+    right: 120px;
+
+    top: 420px;
+  }
+}

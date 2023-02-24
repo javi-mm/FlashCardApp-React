@@ -1,0 +1,37 @@
+.custom_button {
+  background-color: #2b825b;
+  color: #ffff;
+  border: none;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover,
+  &:active {
+    background-color: #40bf86;
+  }
+}
+
+.inside_button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+/* Button Sizes */
+
+.small {
+  padding: 5px 10px 5px 10px;
+}
+.medium {
+  padding: 10px 20px 10px 20px;
+}
+.large {
+  width: 300px;
+  height: 60px;
+}
+.xlarge {
+  padding: 30px 150px 30px 150px;
+}

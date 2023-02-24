@@ -1,0 +1,17 @@
+.deck_title {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  input {
+    width: 90%;
+    border: 1px solid #444;
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

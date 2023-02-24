@@ -1,0 +1,29 @@
+.nav {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid white;
+  font-size: 16px;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  column-gap: 40px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.navlink {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+  letter-spacing: 1px;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    color: rgb(220, 219, 219);
+  }
+}
