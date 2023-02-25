@@ -11,6 +11,8 @@ const CustomSlider = (props) => {
     speed: 400,
     slidesToScroll: 1,
     initialSlide: 0,
+    draggable: false,
+    touchMove: false,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
   };
