@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { getCard } from "../helpers/functions";
 import { useEffect } from "react";
+import { useRef } from "react";
 
 const Card = ({ id, cardNumber, totalNumberOfCards }) => {
   const [flip, setFlip] = useState(false);
@@ -24,6 +25,9 @@ const Card = ({ id, cardNumber, totalNumberOfCards }) => {
 
   if (!cardInfo) return;
 
+  const questionTextLength = cardInfo.question.split(" ").length > 30;
+  const answerTextLength = cardInfo.answer.split(" ").length > 30;
+
   return (
     <div className="card">
       <div onClick={handleFlip} className={`${flip ? "flipped" : ""} `}>
@@ -36,7 +40,11 @@ const Card = ({ id, cardNumber, totalNumberOfCards }) => {
               <div className="card_type">
                 <p>Q</p>
               </div>
-              <div className="card_text">
+              <div
+                className={`card_text ${
+                  questionTextLength ? "big_text" : "small_text"
+                }`}
+              >
                 <div className="card_text_content">{cardInfo.question}</div>
               </div>
             </div>
@@ -53,7 +61,13 @@ const Card = ({ id, cardNumber, totalNumberOfCards }) => {
                 <p>A</p>
               </div>
               <div className="card_text">
-                <div className="card_text_content">{cardInfo.answer}</div>
+                <div
+                  className={`card_text ${
+                    answerTextLength ? "big_text" : "small_text"
+                  }`}
+                >
+                  {cardInfo.answer}
+                </div>
               </div>
             </div>
           </div>

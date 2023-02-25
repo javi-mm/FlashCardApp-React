@@ -2,12 +2,13 @@ import React from "react";
 import "./Button.scss";
 
 const Button = (props) => {
-  const { fontSize, onClick, text, size, iconUrl } = props;
+  const { fontSize, onClick, text, size, iconUrl, disabled = false } = props;
   return (
     <button
       className={`custom_button ${size}`}
       style={{ fontSize }}
       onClick={onClick}
+      disabled={disabled ? true : false}
     >
       {!iconUrl && <div>{text}</div>}
       {iconUrl && (

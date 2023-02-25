@@ -15,6 +15,7 @@ import { db } from "../../firebase";
 const CreateNewCard = ({ onClose, updateCardList, deckID }) => {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
+  const [error, setError] = useState(false);
 
   const addCardToDeck = async (cardID) => {
     const deckRef = doc(db, "decks", deckID);
@@ -31,20 +32,24 @@ const CreateNewCard = ({ onClose, updateCardList, deckID }) => {
         question,
         answer,
       });
+      await addCardToDeck(cardID);
+      updateCardList();
+      onClose();
+    } else {
+      setError(true);
     }
-    await addCardToDeck(cardID);
-    updateCardList();
   };
 
   const handleCreateCard = async () => {
-    onClose();
     await createCard();
   };
   const handleQuestion = (event) => {
+    setError(false);
     setQuestion(event.target.value);
   };
 
   const handleAnswer = (event) => {
+    setError(false);
     setAnswer(event.target.value);
   };
 
@@ -53,25 +58,25 @@ const CreateNewCard = ({ onClose, updateCardList, deckID }) => {
       <div className="inputs">
         <h3>Crea una Carta</h3>
         <div className="input">
-          <input
-            type="text"
+          <textarea
             placeholder="Introduce la pregunta"
             onChange={handleQuestion}
           />
         </div>
         <div className="input">
-          <input
-            type="text"
+          <textarea
             placeholder="Introduce la respuesta"
             onChange={handleAnswer}
           />
         </div>
+        {error && <p style={{ color: "red" }}>Los dos campos están vacíos.</p>}
 
         <div className="buttons">
           <Button
             size={"medium"}
             fontSize={16}
-            text={"Create Card"}
+            text={"Crea una Carta"}
+            disabled={error ? true : false}
             onClick={handleCreateCard}
           ></Button>
           <Button

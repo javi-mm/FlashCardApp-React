@@ -13,6 +13,7 @@ const Nav = () => {
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);
   const currentUser = useContext(UserContext);
+
   if (loading)
     return (
       <nav className="nav">

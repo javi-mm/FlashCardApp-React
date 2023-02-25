@@ -76,7 +76,7 @@ const CardListElement = ({
               rows="1"
               value={question}
               onChange={handleQuestionChange}
-              placeholder="Question"
+              placeholder="Pregunta"
             ></textarea>
           </div>
         </div>
@@ -87,9 +87,8 @@ const CardListElement = ({
           <div className="card_element_textarea">
             <textarea
               ref={answerTextAreaRef}
-              type="text"
               readOnly={!isDeckOwner ? true : false}
-              placeholder="Answer"
+              placeholder="Respuesta"
               onChange={handleAnswerChange}
               value={answer}
             ></textarea>

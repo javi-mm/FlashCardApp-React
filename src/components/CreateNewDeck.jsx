@@ -10,6 +10,7 @@ import { getDocCustom } from "../helpers/functions";
 
 const CreateNewDeck = ({ onClose, updateDecks, userID }) => {
   const [deckTitle, setDeckTitle] = useState("");
+  const [error, setError] = useState(false);
 
   const getUserInfo = async (userID) => {
     const userInfo = await getDocCustom("users", userID);
@@ -22,11 +23,11 @@ const CreateNewDeck = ({ onClose, updateDecks, userID }) => {
   }, [userID]);
 
   const handleInputChange = (event) => {
+    setError(false);
     setDeckTitle(event.target.value);
   };
 
   const handleCreateDeck = async () => {
-    onClose();
     await createDeck();
   };
 
@@ -43,8 +44,11 @@ const CreateNewDeck = ({ onClose, updateDecks, userID }) => {
         userPhoto: userInfo.photoURL,
         id,
       });
+      onClose();
+      await updateDecks();
+    } else {
+      setError(true);
     }
-    await updateDecks();
   };
 
   return (
@@ -57,11 +61,13 @@ const CreateNewDeck = ({ onClose, updateDecks, userID }) => {
             onChange={handleInputChange}
           />
         </div>
+        {error && <p style={{ color: "red" }}>Introduce un título</p>}
         <div className="buttons">
           <Button
             size={"medium"}
             fontSize={16}
             text={"Create Deck"}
+            disabled={error}
             onClick={handleCreateDeck}
           ></Button>
           <Button

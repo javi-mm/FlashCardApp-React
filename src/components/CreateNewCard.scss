@@ -17,12 +17,13 @@
   height: 80px;
 }
 
-.input input {
+.input textarea {
   width: 90%;
   border: 1px solid #444;
   padding: 10px;
   border-radius: 6px;
   font-size: 16px;
+  resize: none;
 
   &:focus {
     outline: none;
