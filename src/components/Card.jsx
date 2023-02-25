@@ -12,7 +12,7 @@ const Card = ({ id, cardNumber, totalNumberOfCards }) => {
     setFlip(!flip);
   };
 
-  const handlerAsyncFn = async (params) => {
+  const handlerAsyncFn = async () => {
     const card = await getCard(id);
     setCardInfo(card);
   };

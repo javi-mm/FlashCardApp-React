@@ -14,6 +14,7 @@ const UserPage = () => {
   const params = useParams();
   const user = useContext(UserContext);
   const currentUser = params.userId;
+  const [loading, setLoading] = useState(true);
   const [isModalShowing, setIsModalShowing] = useState(false);
   const [deckList, setDeckList] = useState([]);
 
@@ -26,6 +27,7 @@ const UserPage = () => {
       querySnapshot.forEach((doc) => {
         setDeckList((prev) => [...prev, doc.data()]);
       });
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -49,7 +51,7 @@ const UserPage = () => {
 
   return (
     <div className="userpage_wrapper">
-      <DecksWrapper titulo={"Tus Decks"}>
+      <DecksWrapper titulo={"Tus Decks"} loading={loading}>
         {deckList &&
           deckList.map((deck) => {
             return (

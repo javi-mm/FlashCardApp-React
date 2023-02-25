@@ -3,15 +3,16 @@ import { useState, useEffect } from "react";
 import CardListElement from "./CardListElement";
 import { getDocCustom } from "../helpers/functions";
 import CreateNewCard from "./CreateNewCard";
-import DeleteItem from "./DeleteItem";
 import { doc, deleteDoc, updateDoc, arrayRemove } from "firebase/firestore";
 import { db } from "../../firebase";
 import Button from "../UI/Button";
 import { useContext } from "react";
 import { UserContext } from "../context/usercontext";
+import Spinner from "../UI/Spinner";
 
 const CardList = ({ deckID }) => {
   const currenUser = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
   const [isModalShowing, setIsModalShowing] = useState(false);
   const [deck, setDeck] = useState();
 
@@ -27,6 +28,7 @@ const CardList = ({ deckID }) => {
   };
 
   const deleteCardFromDB = async (cardID) => {
+    setLoading(true);
     await deleteCard(cardID);
     await deleteCardFromDeck(cardID);
   };
@@ -36,8 +38,10 @@ const CardList = ({ deckID }) => {
   };
 
   const getDeck = async () => {
+    if (!loading) setLoading(true);
     const response = await getDocCustom("decks", deckID);
     setDeck(response);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -50,6 +54,15 @@ const CardList = ({ deckID }) => {
     getDeck();
   };
 
+  if (loading)
+    return (
+      <div className="cards_wrapper">
+        <div className="cardlist">
+          <Spinner />
+        </div>
+      </div>
+    );
+
   if (!deck) return;
 
   const isDeckOwner = currenUser?.uid === deck.user;
@@ -60,20 +73,13 @@ const CardList = ({ deckID }) => {
         {deck &&
           deck.cards.map((cardID) => {
             return (
-              <div key={cardID} className="card_with_delete_button">
-                <CardListElement
-                  cardID={cardID}
-                  updateCardList={updateCardList}
-                  isDeckOwner={isDeckOwner}
-                />
-                {isDeckOwner && (
-                  <DeleteItem
-                    id={cardID}
-                    update={updateCardList}
-                    onClick={deleteCardFromDB}
-                  />
-                )}
-              </div>
+              <CardListElement
+                key={cardID}
+                cardID={cardID}
+                updateCardList={updateCardList}
+                isDeckOwner={isDeckOwner}
+                deleteCardFromDB={deleteCardFromDB}
+              />
             );
           })}
         {isDeckOwner && (

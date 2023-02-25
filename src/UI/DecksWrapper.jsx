@@ -1,11 +1,12 @@
 import "./DecksWrapper.scss";
 import React from "react";
+import Spinner from "./Spinner";
 
-const DecksWrapper = ({ children, titulo }) => {
+const DecksWrapper = ({ children, titulo, loading }) => {
   return (
     <div className="page_wrapper">
       <h2>{titulo}</h2>
-      <div className="decks_wrapper">{children}</div>
+      {loading ? <Spinner /> : <div className="decks_wrapper">{children}</div>}
     </div>
   );
 };

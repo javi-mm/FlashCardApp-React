@@ -7,6 +7,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/usercontext";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
+import Spinner from "./Spinner";
 
 const Nav = () => {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ const Nav = () => {
   if (loading)
     return (
       <nav className="nav">
-        <p>...</p>
+        <Spinner width={40} height={40} />
       </nav>
     );
   return (

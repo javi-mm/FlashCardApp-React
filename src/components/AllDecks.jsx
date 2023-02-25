@@ -5,15 +5,18 @@ import { useState } from "react";
 import { db } from "../../firebase";
 import Deck from "../components/Deck";
 import DecksWrapper from "../UI/DecksWrapper";
+import Spinner from "../UI/Spinner";
 
 const AllDecks = () => {
   const [allDecks, setAllDecks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const getAllDecks = async () => {
     const querySnapshot = await getDocs(collection(db, "decks"));
     querySnapshot.forEach((doc) => {
       setAllDecks((prev) => [...prev, doc.data()]);
     });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -27,7 +30,7 @@ const AllDecks = () => {
   if (!allDecks) return;
 
   return (
-    <DecksWrapper titulo={"Todos los Decks"}>
+    <DecksWrapper titulo={"Todos los Decks"} loading={loading}>
       {allDecks.map((deck) => {
         return (
           <Deck

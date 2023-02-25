@@ -6,8 +6,14 @@ import { doc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useRef } from "react";
 import useAutosizeTextArea from "../hooks/useAutoSizeArea";
+import DeleteItem from "./DeleteItem";
 
-const CardListElement = ({ cardID, updateCardList, isDeckOwner }) => {
+const CardListElement = ({
+  cardID,
+  updateCardList,
+  isDeckOwner,
+  deleteCardFromDB,
+}) => {
   const questionTextAreaRef = useRef();
   const answerTextAreaRef = useRef();
   const [card, setCard] = useState();
@@ -56,38 +62,47 @@ const CardListElement = ({ cardID, updateCardList, isDeckOwner }) => {
   if (!card) return;
 
   return (
-    <div onBlur={handleCardOnBlur} className="card_element">
-      <div className="card_element_side card_element_left">
-        <div className="card_element_letter">
-          <p>Q</p>
+    <div key={cardID} className="card_with_delete_button">
+      <div onBlur={handleCardOnBlur} className="card_element">
+        <div className="card_element_side card_element_left">
+          <div className="card_element_letter">
+            <p>Q</p>
+          </div>
+          <div className="card_element_textarea">
+            <textarea
+              ref={questionTextAreaRef}
+              readOnly={!isDeckOwner ? true : false}
+              cols="30"
+              rows="1"
+              value={question}
+              onChange={handleQuestionChange}
+              placeholder="Question"
+            ></textarea>
+          </div>
         </div>
-        <div className="card_element_textarea">
-          <textarea
-            ref={questionTextAreaRef}
-            readOnly={!isDeckOwner ? true : false}
-            cols="30"
-            rows="1"
-            value={question}
-            onChange={handleQuestionChange}
-            placeholder="Question"
-          ></textarea>
+        <div className="card_element_side card_element_right">
+          <div className="card_element_letter">
+            <p>A</p>
+          </div>
+          <div className="card_element_textarea">
+            <textarea
+              ref={answerTextAreaRef}
+              type="text"
+              readOnly={!isDeckOwner ? true : false}
+              placeholder="Answer"
+              onChange={handleAnswerChange}
+              value={answer}
+            ></textarea>
+          </div>
         </div>
       </div>
-      <div className="card_element_side card_element_right">
-        <div className="card_element_letter">
-          <p>A</p>
-        </div>
-        <div className="card_element_textarea">
-          <textarea
-            ref={answerTextAreaRef}
-            type="text"
-            readOnly={!isDeckOwner ? true : false}
-            placeholder="Answer"
-            onChange={handleAnswerChange}
-            value={answer}
-          ></textarea>
-        </div>
-      </div>
+      {isDeckOwner && (
+        <DeleteItem
+          id={cardID}
+          update={updateCardList}
+          onClick={deleteCardFromDB}
+        />
+      )}
     </div>
   );
 };

@@ -1,9 +1,16 @@
 import "./CardCarousel.scss";
 import Card from "./Card";
 import Slider from "../UI/Slider";
+import Spinner from "../UI/Spinner";
 
-const CardCarousel = ({ deck }) => {
-  if (!deck) return;
+const CardCarousel = ({ deck, loading }) => {
+  if (loading || !deck) {
+    return (
+      <div className="wrapper">
+        <Spinner />
+      </div>
+    );
+  }
 
   return (
     <div className="wrapper">
