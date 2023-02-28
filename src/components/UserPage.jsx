@@ -72,7 +72,7 @@ const UserPage = () => {
       <div>
         <Button
           onClick={openModal}
-          text={"Add New Deck"}
+          text={"Añade Nuevo Deck"}
           size={"medium"}
           fontSize={15}
         ></Button>

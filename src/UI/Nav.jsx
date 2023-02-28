@@ -33,7 +33,7 @@ const Nav = () => {
             <>
               <li>
                 <NavLink className="navlink" to={`/user/${currentUser.uid}`}>
-                  User
+                  Usuario
                 </NavLink>
               </li>
               <li>

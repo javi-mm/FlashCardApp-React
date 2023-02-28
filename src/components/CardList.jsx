@@ -85,7 +85,7 @@ const CardList = ({ deckID }) => {
         {isDeckOwner && (
           <Button
             onClick={openModal}
-            text={"Add New Card"}
+            text={"Añade una Carta"}
             size={"medium"}
             fontSize={15}
           ></Button>

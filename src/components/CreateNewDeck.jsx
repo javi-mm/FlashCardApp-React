@@ -66,14 +66,14 @@ const CreateNewDeck = ({ onClose, updateDecks, userID }) => {
           <Button
             size={"medium"}
             fontSize={16}
-            text={"Create Deck"}
+            text={"Crea un Deck"}
             disabled={error}
             onClick={handleCreateDeck}
           ></Button>
           <Button
             size={"medium"}
             fontSize={16}
-            text={"Close"}
+            text={"Cerrar"}
             onClick={onClose}
           ></Button>
         </div>

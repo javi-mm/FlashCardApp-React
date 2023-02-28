@@ -82,7 +82,7 @@ const CreateNewCard = ({ onClose, updateCardList, deckID }) => {
           <Button
             size={"medium"}
             fontSize={16}
-            text={"Close"}
+            text={"Cerrar"}
             onClick={onClose}
           ></Button>
         </div>
