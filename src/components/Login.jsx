@@ -43,13 +43,11 @@ const Login = () => {
           size={"large"}
           fontSize={16}
           text={"Google"}
-          iconUrl={"/svg/google.svg"}
         ></Button>
         <Button
           size={"large"}
           fontSize={16}
           text={"GitHub"}
-          iconUrl={"/svg/github.svg"}
           onClick={githubHandler}
         ></Button>
       </div>
