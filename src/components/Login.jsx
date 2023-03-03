@@ -41,12 +41,12 @@ const Login = () => {
         <Button
           onClick={googleHandler}
           size={"large"}
-          fontSize={16}
+          fontSize={18}
           text={"Google"}
         ></Button>
         <Button
           size={"large"}
-          fontSize={16}
+          fontSize={18}
           text={"GitHub"}
           onClick={githubHandler}
         ></Button>
